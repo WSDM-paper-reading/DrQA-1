@@ -30,7 +30,7 @@ logger = logging.getLogger()
 
 # Defaults
 DATA_DIR = os.path.join(DRQA_DATA, 'datasets')
-MODEL_DIR = '/tmp/drqa-models/'
+MODEL_DIR = 'data/drqa-models/'
 EMBED_DIR = os.path.join(DRQA_DATA, 'embeddings')
 
 def str2bool(v):

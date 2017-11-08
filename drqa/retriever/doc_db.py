@@ -53,3 +53,16 @@ class DocDB(object):
         result = cursor.fetchone()
         cursor.close()
         return result if result is None else result[0]
+
+    def get_para_text_batch(self, doc_ids):
+        """Fetch the raw text of the doc for 'doc_id'."""
+        cursor = self.connection.cursor()
+        cursor.execute('SELECT * FROM documents WHERE id in ({0})'.format(', '.join('?' for _ in doc_ids)), doc_ids)
+        result = list(cursor.fetchall())
+        #for x,y in result:
+        #    print (len(y))
+        #print(sum([ len(x) for _,x in result])*1.0/len(result))
+        #800
+        result = [ (x,y[:1500]) for x,y in result ]
+        cursor.close()
+        return result
